@@ -1,0 +1,867 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Django,Python," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="##第1个Django应用，Part 1
+
+通过本教程，我们将带你创建一个简单的民意调查应用，它包含两部分：
+
+一个公共页面供人们查看投票结果跟投票。
+一个管理页面供你添加、修改跟删除投票。
+
+我们假定你已经安装好Django了，你可以通过以下命令查看Django是否已安装以及Django的版本：
+
+python -c “import django; print(django.get_versio">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第1个Django应用，Part 1">
+<meta property="og:url" content="http://www.ai-fire.com/2015/12/29/第1个Django应用，Part-1/index.html">
+<meta property="og:site_name" content="Surveying's Blog">
+<meta property="og:description" content="##第1个Django应用，Part 1
+
+通过本教程，我们将带你创建一个简单的民意调查应用，它包含两部分：
+
+一个公共页面供人们查看投票结果跟投票。
+一个管理页面供你添加、修改跟删除投票。
+
+我们假定你已经安装好Django了，你可以通过以下命令查看Django是否已安装以及Django的版本：
+
+python -c “import django; print(django.get_versio">
+<meta property="og:image" content="http://7xpkk2.com1.z0.glb.clouddn.com/images%2FNLpcuPFS26kW9WiB59Nn.jpg">
+<meta property="og:image" content="http://7xpkk2.com1.z0.glb.clouddn.com/images%2F7GJlta2WYwR1UXcBLOay.jpg">
+<meta property="og:updated_time" content="2015-12-29T10:01:08.092Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第1个Django应用，Part 1">
+<meta name="twitter:description" content="##第1个Django应用，Part 1
+
+通过本教程，我们将带你创建一个简单的民意调查应用，它包含两部分：
+
+一个公共页面供人们查看投票结果跟投票。
+一个管理页面供你添加、修改跟删除投票。
+
+我们假定你已经安装好Django了，你可以通过以下命令查看Django是否已安装以及Django的版本：
+
+python -c “import django; print(django.get_versio">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'hide',
+    motion: true
+  };
+</script>
+
+  <title> 第1个Django应用，Part 1 | Surveying's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Surveying's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">我的博客</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-heartbeat fa-fw"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                第1个Django应用，Part 1
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-12-29T17:52:55+08:00" content="2015-12-29">
+              2015-12-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/12/29/第1个Django应用，Part-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/29/第1个Django应用，Part-1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>##第1个Django应用，Part 1</p>
+<hr>
+<p>通过本教程，我们将带你创建一个简单的民意调查应用，它包含两部分：</p>
+<ul>
+<li>一个公共页面供人们查看投票结果跟投票。</li>
+<li>一个管理页面供你添加、修改跟删除投票。</li>
+</ul>
+<p>我们假定你已经安装好Django了，你可以通过以下命令查看Django是否已安装以及Django的版本：</p>
+<blockquote>
+<p>python -c “import django; print(django.get_version())”</p>
+</blockquote>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">py2_django</span>)</span><span class="list">[<span class="keyword">iZ28@gczd2csZ</span> ~]$ python -c <span class="string">"import django; print(django.get_version())"</span></span><br><span class="line"><span class="number">1.9</span></span><br><span class="line"><span class="list">(<span class="keyword">py2_django</span>)</span><span class="list">[<span class="keyword">iZ28@gczd2csZ</span> ~]$</span></span></span><br></pre></td></tr></table></figure>
+<p>若Django已安装，将输出Django的版本信息。若未安装，则会报”No module named django”的错误。</p>
+<p>本教程基于Django 1.9 + Python 3.4。若使用Python 2.7 ，则需要根据备注相应调整代码。</p>
+<p>参照<a href="https://docs.djangoproject.com/en/1.9/topics/install/" target="_blank" rel="external">How to install Django</a>文档，了解如何更新Django版本。</p>
+<h2 id="u521B_u5EFA_u4E00_u4E2A_u9879_u76EE"><a href="#u521B_u5EFA_u4E00_u4E2A_u9879_u76EE" class="headerlink" title="创建一个项目"></a>创建一个项目</h2><p>若是首次使用Django，你需要注意下一些初始化设置。即你需要自动生成Django项目代码–一个Django实例，包括数据库设置，Django专用选项，应用程序专业配置项。<br>在命令行终端，执行cd命令，进入存放代码的目录，然后执行一下命令创建Django项目：</p>
+<p><code>django-admin startproject mysite</code></p>
+<p>该命令将创建一个<strong>mysite</strong>的项目目录。若无效，可以查看<a href="https://docs.djangoproject.com/en/1.9/faq/troubleshooting/#troubleshooting-django-admin" target="_blank" rel="external">Problems running django-admin</a></p>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>要避免使用python或django内建元素命名项目。尤其是应该避免使用django（跟django自己就冲突了）或者test（跟python的一个内建包冲突了）类似的名称命名项目。</p>
+<p><strong>代码应该放哪里</strong></p>
+<p>如果你的后台代码是纯php的（没有使用任何现代框架）,你应当将代码放到web目录下（如/var/www）。而使用Django，则不建议放任何Python的代码到web目录，因为通过web有可能获取到该代码，不利于web安全。<br>建议将代码放到web目录外，如 <em>/home/mycode</em></p>
+</blockquote>
+<p>现在看下刚创建的项目文件：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysite/</span><br><span class="line">├── manage<span class="class">.py</span></span><br><span class="line">└── mysite</span><br><span class="line">    ├── __init__<span class="class">.py</span></span><br><span class="line">    ├── settings<span class="class">.py</span></span><br><span class="line">    ├── urls<span class="class">.py</span></span><br><span class="line">    └── wsgi.py</span><br></pre></td></tr></table></figure>
+<p>这些文件有</p>
+<ul>
+<li>顶层的 <strong>mysite/</strong> 目录只是用来存放项目的，他的命名对Django没什么意义，可以随意重命名。</li>
+<li><strong>manage.py</strong> 一个命令行工具，用来与Django项目进行交互。关于manage.py的详情可以查看<a href="https://docs.djangoproject.com/en/1.9/ref/django-admin/" target="_blank" rel="external">django-admin and manage.py</a></li>
+<li>二级目录 <strong>mysite/</strong> 才是正则的Python代码包，目录名即python包名，通过该名引入目录下的东西（如 <strong>mysite.urls</strong>）</li>
+<li><strong>mysite/<strong>init</strong>.py</strong> 只是一个空白文件，用来告诉Python，这个目录是一个Python包。<a href="https://docs.python.org/tutorial/modules.html#packages" target="_blank" rel="external">Read more about Package</a></li>
+<li><strong>mysite/settings.py</strong> Django 项目的设置，选项。详细查看<a href="https://docs.djangoproject.com/en/1.9/topics/settings/" target="_blank" rel="external">Django settings</a></li>
+<li><strong>mysite/urls.py</strong> 在这里声明Django的URLS。更多详情请看<a href="https://docs.djangoproject.com/en/1.9/topics/http/urls/" target="_blank" rel="external">URL dispatcher</a></li>
+<li><strong>mysite/wsgi.py</strong> WSCI兼容web服务器的入口点。更多详情查看<a href="https://docs.djangoproject.com/en/1.9/howto/deployment/wsgi/" target="_blank" rel="external">How to deploy with WSGI</a></li>
+</ul>
+<hr>
+<p>验证下刚创建的Django项目是否可用。进入 mysite/ 目录执行下面的命令：</p>
+<p><code>python manage.py runserver</code></p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">这里执行后报错</span><br><span class="line">Error loading either pysqlite2 <span class="keyword">or</span> sqlite3 modules</span><br><span class="line"><span class="comment">## 需要安装pysqlite模块</span></span><br><span class="line">[iZ28<span class="property">@gczd2csZ</span> ~]<span class="comment"># yum search sqlite # Ubuntu 用 apt-get install libsqlite3-dev </span></span><br><span class="line">(py2_django)[iZ28<span class="property">@gczd2csZ</span> ~]<span class="comment"># pip install pysqlite</span></span><br><span class="line"><span class="comment">## pip安装了pysqlite还是没有 _sqlite3.so 只能重编译python2.7.10了</span></span><br><span class="line">[iZ28<span class="property">@gczd2csZ</span> ~]<span class="comment"># pythonbrew uninstall 2.7.10</span></span><br><span class="line">[iZ28<span class="property">@gczd2csZ</span> ~]<span class="comment"># pythonbrew install -v</span></span><br><span class="line">[iZ28<span class="property">@gczd2csZ</span> ~]<span class="comment"># /usr/local/pythonbrew/dists/Python-2.7.10.tgz</span></span><br><span class="line">[iZ28<span class="property">@gczd2csZ</span> ~]<span class="comment"># pythonbrew venv init</span></span><br><span class="line">[iZ28<span class="property">@gczd2csZ</span> ~]<span class="comment"># pythonbrew venv create py2_django -p 2.7.10</span></span><br><span class="line">[iZ28<span class="property">@gczd2csZ</span> ~]<span class="comment"># pybrew venv use py2_django</span></span><br><span class="line">(py2_django)[iZ28<span class="property">@gczd2csZ</span> ~]<span class="comment"># pip install django==1.9</span></span><br><span class="line">(py2_django)[iZ28<span class="property">@gczd2csZ</span> ~]<span class="comment"># pip install --upgrade pip</span></span><br></pre></td></tr></table></figure>
+<p>一番折腾后终于成功</p>
+<pre>
+(py2_django)[iZ28@gczd2csZ mysite]$ python manage.py runserver
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+<i>You have unapplied migrations; your app may not work properly until they are applied.
+Run 'python manage.py migrate' to apply them.</i>
+
+December 29, 2015 - 06:52:51
+Django version 1.9, using settings 'mysite.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+</pre>
+
+<blockquote>
+<p><strong>Note</strong></p>
+<p>暂时忽略数据库迁移未应用的警告，后面我们再处理数据库。</p>
+</blockquote>
+<p>至此，你启动了一个Django开发服务器，基于纯Python写的轻量级web服务器。这种方式可以使你快速进入Django实际开发，而不需要去搭建一个生产环境服务器（如 Apache）。</p>
+<p>要注意，在生产环境中不要用这种方式启动服务。</p>
+<p>现在服务已经启动了，访问 <a href="http://127.0.0.1:8000" target="_blank" rel="external">http://127.0.0.1:8000</a> 就可以看到”Welcome to Django”页面了。</p>
+<p><img src="http://7xpkk2.com1.z0.glb.clouddn.com/images%2FNLpcuPFS26kW9WiB59Nn.jpg" alt="worked"></p>
+<blockquote>
+<p><strong>修改端口</strong></p>
+<p>默认情况下,runserver 命令会启动服务器，侦听在127.0.0.1的8000端口.</p>
+<p>可以传递端口参数，修改服务侦听端口，如改为 8080 端口</p>
+<p><code>python manage.py runserver 8080</code></p>
+<p>或者改为侦听公网ip：</p>
+<p><code>python manage.py runserver 0.0.0.0:8000</code></p>
+<p>runserver 完整的文档请看<a href="https://docs.djangoproject.com/en/1.9/ref/django-admin/#django-admin-runserver" target="_blank" rel="external">runserver</a></p>
+<p><strong>自动重载runserver</strong></p>
+<p>runserver 对每次请求都会根据需要重新加载Python代码，所以修改了代码后并不需要重启runserver使修改生效。但是，新增代码文件不会触发重启动作，故像新增文件这种操作需要重启下runserver。</p>
+</blockquote>
+<hr>
+<h2 id="u521B_u5EFA_u6C11_u610F_u8C03_u67E5_u5E94_u7528"><a href="#u521B_u5EFA_u6C11_u610F_u8C03_u67E5_u5E94_u7528" class="headerlink" title="创建民意调查应用"></a>创建民意调查应用</h2><p>每个基于Django的应用程序都是由一个符合某些约定的Python包组成。Django 提供了自动生成程序基本目录结构的工具，从而我们可以专注于代码编写而不是创建目录。</p>
+<blockquote>
+<p><strong>项目 Vs 应用</strong></p>
+<p>项目与应用的区别，在于app是一个web程序，它能完成某件事情，提供某种服务，如一个博客系统，一个公共记录数据库，或一个简单的投票系统。而项目是特定网站的一系列配置选项跟app的集合。一个项目可以包含多个app，而一个app也可以属于多个项目。</p>
+</blockquote>
+<p>你的app可以放在<a href="https://docs.python.org/tutorial/modules.html#the-module-search-path" target="_blank" rel="external">Python path</a>下的任何地方。本教程中，我们将在manage.py文件所在目录中创建我们的app，从而可以从顶级目录中导入app模块，而不需要从mysite的子目录中导入。</p>
+<p>确保进入mangage.py所在目录，然后执行以下命令创建app：</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">py2_django</span>)</span><span class="list">[<span class="keyword">iZ28@gczd2csZ</span> votesite]$ python manage.py startapp polls</span></span><br></pre></td></tr></table></figure>
+<p>该命令将创建polls目录，目录结构如下：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(py2_django)[iZ28@gczd2csZ votesite]$ tree polls/</span><br><span class="line">polls/</span><br><span class="line">├── admin<span class="class">.py</span></span><br><span class="line">├── apps<span class="class">.py</span></span><br><span class="line">├── __init__<span class="class">.py</span></span><br><span class="line">├── migrations</span><br><span class="line">│   └── __init__<span class="class">.py</span></span><br><span class="line">├── models<span class="class">.py</span></span><br><span class="line">├── tests<span class="class">.py</span></span><br><span class="line">└── views.py</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="u7B2C_u4E00_u4E2A_u89C6_u56FE_28view_29"><a href="#u7B2C_u4E00_u4E2A_u89C6_u56FE_28view_29" class="headerlink" title="第一个视图(view)"></a>第一个视图(view)</h2><p>编辑 polls/views.py，添加一下代码:</p>
+<blockquote>
+<p><strong>polls/views.py</strong></p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">"Hello, world. You're at the polls index."</span>)</span><br></pre></td></tr></table></figure>
+<p>这可能是Django中最简单的视图了。为了调用这个视图，我们需要一个URLconf来映射视图到URL。</p>
+<p>为了创建一个URLconf，需要一个urls.py的文件。现在你的app目录应该是这样子的：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">polls/</span><br><span class="line">├── admin<span class="class">.py</span></span><br><span class="line">├── apps<span class="class">.py</span></span><br><span class="line">├── __init__<span class="class">.py</span></span><br><span class="line">├── migrations</span><br><span class="line">│   └── __init__<span class="class">.py</span></span><br><span class="line">├── models<span class="class">.py</span></span><br><span class="line">├── tests<span class="class">.py</span></span><br><span class="line">├── urls<span class="class">.py</span></span><br><span class="line">└── views.py</span><br></pre></td></tr></table></figure>
+<p>urls.py 文件中需要包含一下代码：</p>
+<blockquote>
+<p><strong>polls/urls.py</strong></p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ cat urls.py </span><br><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(<span class="string">r'^$'</span>, views.index, name=<span class="string">'index'</span>),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>下一步就是将polls.urls模块指向根URLconf。在 mysite/urls.py中，导入<strong>django.conf.urls.include</strong>，并插入一行<a href="https://docs.djangoproject.com/en/1.9/ref/urls/#django.conf.urls.include" target="_blank" rel="external">include()</a>到urlpatterns列表中，如下：</p>
+<blockquote>
+<p><strong>mysite/urls.py</strong></p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> include, url</span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(<span class="string">r'^polls/'</span>, include(<span class="string">'polls.urls'</span>)),</span><br><span class="line">    url(<span class="string">r'^admin/'</span>, admin.site.urls),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>访问 <a href="http://localhost:8000/polls/" target="_blank" rel="external">http://localhost:8000/polls/</a> 即可看到刚才写的视图了。</p>
+<p><img src="http://7xpkk2.com1.z0.glb.clouddn.com/images%2F7GJlta2WYwR1UXcBLOay.jpg" alt="hello"></p>
+<hr>
+<p><strong>url()</strong> 函数可以传递4个参数，两个是必须的：正则表达式(regex)跟视图(view)，另外两个可选：kwargs， name。各参数含义如下：</p>
+<hr>
+<p><strong>regex</strong></p>
+<p>regex 是”regular expression”的缩写，用于匹配URL地址的正则表达式。Django是按regex的顺序进行对比，直到找到匹配的正则表达式。</p>
+<p>要注意的是，这里并不检查GET，POST的参数，或者域名。例如，请求<a href="https://www.example.com/myapp/，URLconf会找到" target="_blank" rel="external">https://www.example.com/myapp/，URLconf会找到</a> myapp/，请求<a href="https://www.example.com/myapp/?page=3，URLconf依旧会找到myapp/。" target="_blank" rel="external">https://www.example.com/myapp/?page=3，URLconf依旧会找到myapp/。</a></p>
+<p>如果对正则表达式有疑惑，可以看<a href="https://en.wikipedia.org/wiki/Regular_expression" target="_blank" rel="external">Wiki文档</a>，还有<a href="https://docs.python.org/3/library/re.html#module-re" target="_blank" rel="external">re</a>模块文档。</p>
+<hr>
+<p><strong>view</strong> </p>
+<hr>
+<p><strong>kwargs</strong></p>
+<hr>
+<p><strong>name</strong></p>
+<blockquote>
+<p><a href="https://docs.djangoproject.com/en/1.9/intro/tutorial01/" target="_blank" rel="external">Writing your first Django app, part 1</a></p>
+</blockquote>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Django/" rel="tag">#Django</a>
+          
+            <a href="/tags/Python/" rel="tag">#Python</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/28/安装piwik/" rel="next" title="安装piwik">
+                <i class="fa fa-chevron-left"></i> 安装piwik
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/04/第1个Django应用，Part-2/" rel="prev" title="第1个Django应用，Part 2">
+                第1个Django应用，Part 2 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/12/29/第1个Django应用，Part-1/"
+           data-title="第1个Django应用，Part 1" data-url="http://www.ai-fire.com/2015/12/29/第1个Django应用，Part-1/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="Eraz.Xie" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Eraz.Xie</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://gitcafe.com/surveying" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> gitcafe
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://theme-next.iissnan.com" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> theme-next
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.mirrorservice.org" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> UK-Mirrors
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">Links</p>
+            
+              <span class="links-of-author-item">
+                <a href="http://macshuo.com/" target="_blank">MacTalk</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#u521B_u5EFA_u4E00_u4E2A_u9879_u76EE"><span class="nav-number">1.</span> <span class="nav-text">创建一个项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u521B_u5EFA_u6C11_u610F_u8C03_u67E5_u5E94_u7528"><span class="nav-number">2.</span> <span class="nav-text">创建民意调查应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u7B2C_u4E00_u4E2A_u89C6_u56FE_28view_29"><span class="nav-number">3.</span> <span class="nav-text">第一个视图(view)</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" style="text-align:center;">
+  
+  <a href="http://www.miitbeian.gov.cn">粤ICP备15020665号-1</a>&nbsp;&copy;&nbsp; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Eraz.Xie</span>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ai-fire"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>

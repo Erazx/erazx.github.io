@@ -1,0 +1,861 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Django,Python," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="利用pip安装Django
+安装pip
+  123yum install python-pip# 升级pippip install --upgrade pip
+
+安装Django
+  12pip install Djangopip install Django==1.6.10
+
+
+
+检查安装是否成功
+  12345&amp;gt;&amp;gt;&amp;gt; import django&amp;gt;&amp;gt;&amp;gt; dja">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CentOS6下安装Django记录">
+<meta property="og:url" content="http://www.ai-fire.com/2015/12/25/CentOS6下安装Django记录/index.html">
+<meta property="og:site_name" content="Surveying's Blog">
+<meta property="og:description" content="利用pip安装Django
+安装pip
+  123yum install python-pip# 升级pippip install --upgrade pip
+
+安装Django
+  12pip install Djangopip install Django==1.6.10
+
+
+
+检查安装是否成功
+  12345&amp;gt;&amp;gt;&amp;gt; import django&amp;gt;&amp;gt;&amp;gt; dja">
+<meta property="og:updated_time" content="2015-12-28T10:11:03.945Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CentOS6下安装Django记录">
+<meta name="twitter:description" content="利用pip安装Django
+安装pip
+  123yum install python-pip# 升级pippip install --upgrade pip
+
+安装Django
+  12pip install Djangopip install Django==1.6.10
+
+
+
+检查安装是否成功
+  12345&amp;gt;&amp;gt;&amp;gt; import django&amp;gt;&amp;gt;&amp;gt; dja">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'hide',
+    motion: true
+  };
+</script>
+
+  <title> CentOS6下安装Django记录 | Surveying's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Surveying's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">我的博客</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-heartbeat fa-fw"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                CentOS6下安装Django记录
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-12-25T18:13:33+08:00" content="2015-12-25">
+              2015-12-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/12/25/CentOS6下安装Django记录/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/25/CentOS6下安装Django记录/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="u5229_u7528pip_u5B89_u88C5Django"><a href="#u5229_u7528pip_u5B89_u88C5Django" class="headerlink" title="利用pip安装Django"></a>利用pip安装Django</h2><ul>
+<li><p>安装pip</p>
+  <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="keyword">install</span> python-pip</span><br><span class="line"><span class="comment"># 升级pip</span></span><br><span class="line">pip <span class="keyword">install</span> --upgrade pip</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装Django</p>
+  <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="keyword">install</span> Django</span><br><span class="line">pip <span class="keyword">install</span> Django==<span class="number">1.6</span>.<span class="number">10</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>检查安装是否成功</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="prompt">&gt;&gt;</span>&gt; import django</span><br><span class="line"><span class="prompt">&gt;&gt;</span>&gt; django.<span class="constant">VERSION</span></span><br><span class="line">(<span class="number">1</span>, <span class="number">7</span>, <span class="number">6</span>, <span class="string">'final'</span>, <span class="number">0</span>)</span><br><span class="line"><span class="prompt">&gt;&gt;</span>&gt; django.get_version()</span><br><span class="line"><span class="string">'1.7.6'</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="u6E90_u7801_u5B89_u88C5Django"><a href="#u6E90_u7801_u5B89_u88C5Django" class="headerlink" title="源码安装Django"></a>源码安装Django</h2><hr>
+<p><em>开始尝试pip安装，结果提示</em></p>
+<pre>
+Collecting Django
+  Retrying (Retry(total=4, connect=None, read=None, redirect=None)) after connection broken by 'ProtocolError('Connection aborted.', gaierror(-2, 'Name or service not known'))': /simple/django/
+</pre>
+
+<p><em>莫非被墙了？只能是用源码安装咯</em></p>
+<p>Django 1.6 是最后一个支持python2.6的版本，CentOS6要装Django1.9 需要升级Python</p>
+<p>下载源码并安装</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https:<span class="comment">//www.djangoproject.com/m/releases/1.9/Django-1.9.tar.gz</span></span><br><span class="line">tar xvf Django-<span class="number">1.9</span><span class="class">.tar</span><span class="class">.gz</span></span><br><span class="line">cd Django-<span class="number">1.9</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><del>未完待续: 安装Python2.7，结合 pythonbrew，virtualenv 处理不通版本python环境</del></p>
+</blockquote>
+<h2 id="pythonbrew__u9694_u79BB_u73AF_u5883_u5B89_u88C5Django"><a href="#pythonbrew__u9694_u79BB_u73AF_u5883_u5B89_u88C5Django" class="headerlink" title="pythonbrew 隔离环境安装Django"></a>pythonbrew 隔离环境安装Django</h2><hr>
+<p><em>上面使用源码安装因python版本问题，宣告失败，继续改用pythonbrew控制python版本，在隔离环境下安装Django。</em></p>
+<h3 id="pip_u5B89_u88C5pythonbrew"><a href="#pip_u5B89_u88C5pythonbrew" class="headerlink" title="pip安装pythonbrew"></a>pip安装pythonbrew</h3><p><code>[sudo] pip install pythonbrew</code></p>
+<p><em>系统层(多用户环境)安装</em></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"># 设置环境变量 PYTHONBREW_ROOT ，指定安装目录为 /usr/local/pythonbrew</span><br><span class="line">[root ~]# echo $PYTHONBREW_ROOT</span><br><span class="line">/usr/local/pythonbrew</span><br><span class="line">[root ~]# pythonbrew_install</span><br><span class="line"></span><br><span class="line">Well-done! Congratulations!</span><br><span class="line"></span><br><span class="line">The pythonbrew is installed as:</span><br><span class="line">    </span><br><span class="line">  /usr/local/pythonbrew</span><br><span class="line"></span><br><span class="line">Please add the following line to the <span class="operator"><span class="keyword">end</span> <span class="keyword">of</span> your ~/.bashrc</span><br><span class="line"></span><br><span class="line">  [[ -s <span class="string">"/usr/local/pythonbrew/etc/bashrc"</span> ]] &amp;&amp; <span class="keyword">source</span> <span class="string">"/usr/local/pythonbrew/etc/bashrc"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">After</span> that, <span class="keyword">exit</span> this shell, <span class="keyword">start</span> a <span class="keyword">new</span> one, <span class="keyword">and</span> <span class="keyword">install</span> <span class="keyword">some</span> <span class="keyword">fresh</span></span><br><span class="line">pythons:</span><br><span class="line"></span><br><span class="line">  pythonbrew <span class="keyword">install</span> <span class="number">2.7</span><span class="number">.2</span></span><br><span class="line">  pythonbrew <span class="keyword">install</span> <span class="number">3.2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">For</span> further instructions, run:</span><br><span class="line"></span><br><span class="line">  pythonbrew <span class="keyword">help</span></span><br><span class="line"></span><br><span class="line">The <span class="keyword">default</span> <span class="keyword">help</span> messages will popup <span class="keyword">and</span> tell you what <span class="keyword">to</span> <span class="keyword">do</span>!</span><br><span class="line"></span><br><span class="line">Enjoy pythonbrew <span class="keyword">at</span> /usr/<span class="keyword">local</span>/pythonbrew!!</span><br><span class="line"></span><br><span class="line">[rootZ ~]#</span><br><span class="line"></span><br><span class="line"># 对需要用pythonbrew的用户，修改 ~/.bash_profile，添加两行</span><br><span class="line"><span class="keyword">export</span> PYTHONBREW_ROOT=/usr/<span class="keyword">local</span>/pythonbrew</span><br><span class="line">[[ -s <span class="string">"$PYTHONBREW_ROOT/etc/bashrc"</span> ]] &amp;&amp; <span class="keyword">source</span> <span class="string">"$PYTHONBREW_ROOT/etc/bashrc"</span></span></span><br></pre></td></tr></table></figure>
+<p><em>若用 pythonbrew_systemwide 命令安装，则所有用户都可以使用，无需对每个用户修改 ~/.bash_profile。<br>pythonbrew_systemwide 会在 /etc/profile.d/ 添加一个脚本：pythonbrew.sh</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 文件内容</span></span><br><span class="line"><span class="comment">#begin-pythonbrew</span></span><br><span class="line"><span class="keyword">if</span> [ -n <span class="string">"<span class="variable">$&#123;BASH_VERSION:-&#125;</span>"</span> -o -n <span class="string">"<span class="variable">$&#123;ZSH_VERSION:-&#125;</span>"</span> ] ; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">export</span> PYTHONBREW_ROOT=/usr/<span class="built_in">local</span>/pythonbrew</span><br><span class="line">    <span class="built_in">source</span> <span class="string">"<span class="variable">$&#123;PYTHONBREW_ROOT&#125;</span>/etc/bashrc"</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<h2 id="u57FA_u672C_u7528_u6CD5"><a href="#u57FA_u672C_u7528_u6CD5" class="headerlink" title="基本用法"></a>基本用法</h2><p>pythonbrew command [options]</p>
+<p><em>列出系统内所有已安装的各个版本的python</em></p>
+<p><code>pythonbrew list</code></p>
+<p><em>列出pythonbrew可以安装哪些版本的python</em></p>
+<p><code>pythonbrew list -k</code></p>
+<p><em>安装不同版本的python</em></p>
+<p><code>pythonbrew install 2.7.2</code></p>
+<p><em>永久性地使用某个特定版本的python(即每次登录shell都使用某个版本的python)</em></p>
+<p><code>pythonbrew switch 2.7.2</code></p>
+<p><em>临时性地切换使用某个特定版本的python(即在当前shell中使用某个版本的python)</em></p>
+<p><code>pythonbrew use 2.7.2</code></p>
+<p><em>可以使用系统内所有版本/某个指定版本的python运行某个python文件</em></p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pythonbrew <span class="keyword">py</span> test.<span class="keyword">py</span></span><br><span class="line">pythonbrew <span class="keyword">py</span> -<span class="keyword">v</span> test.<span class="keyword">py</span> # 显示详细的输出结果</span><br><span class="line">pythonbrew <span class="keyword">py</span> -<span class="keyword">p</span> <span class="number">2.7</span>.<span class="number">2</span> -<span class="keyword">p</span> <span class="number">3.2</span> test.<span class="keyword">py</span> # 使用指定版本的<span class="keyword">python</span></span><br></pre></td></tr></table></figure>
+<p><em>删除某个特定版本的python</em></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pythonbrew uninstall <span class="number">2.7</span><span class="number">.2</span></span><br><span class="line">pythonbrew uninstall <span class="number">2.7</span><span class="number">.2</span> <span class="number">3.2</span></span><br></pre></td></tr></table></figure>
+<h2 id="u5229_u7528pythonbrew_u914D_u7F6E_u9694_u79BB_u7684_u5F00_u53D1_u73AF_u5883"><a href="#u5229_u7528pythonbrew_u914D_u7F6E_u9694_u79BB_u7684_u5F00_u53D1_u73AF_u5883" class="headerlink" title="利用pythonbrew配置隔离的开发环境"></a>利用pythonbrew配置隔离的开发环境</h2><hr>
+<p>pythonbrew 已经整合了virtualenv，命令格式基本上是就是加多了一个 venv 子命令<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">pythonbrew venv init</span><br><span class="line"></span><br><span class="line">pythonbrew venv <span class="operator"><span class="keyword">create</span> proj</span><br><span class="line"></span><br><span class="line">pythonbrew venv <span class="keyword">list</span></span><br><span class="line"></span><br><span class="line">pythonbrew venv <span class="keyword">use</span> proj</span><br><span class="line"></span><br><span class="line">pythonbrew venv <span class="keyword">delete</span> proj</span><br><span class="line"></span><br><span class="line">pythonbrew venv <span class="keyword">rename</span> proj proj2</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="pythonbrew_u521B_u5EFA_u9694_u79BB_u73AF_u5883_uFF0C_u5B89_u88C5Django"><a href="#pythonbrew_u521B_u5EFA_u9694_u79BB_u73AF_u5883_uFF0C_u5B89_u88C5Django" class="headerlink" title="pythonbrew创建隔离环境，安装Django"></a>pythonbrew创建隔离环境，安装Django</h3><p><em>安装 python2.7.10</em></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[root ~]# pythonbrew <span class="operator"><span class="keyword">install</span> <span class="number">2.7</span><span class="number">.10</span></span><br><span class="line">Downloading Python-<span class="number">2.7</span><span class="number">.10</span>.tgz <span class="keyword">as</span> /usr/<span class="keyword">local</span>/pythonbrew/dists/Python-<span class="number">2.7</span><span class="number">.10</span>.tgz</span><br><span class="line">######################################################################## <span class="number">100.0</span>%</span><br><span class="line">Extracting Python-<span class="number">2.7</span><span class="number">.10</span>.tgz <span class="keyword">into</span> /usr/<span class="keyword">local</span>/pythonbrew/<span class="keyword">build</span>/Python-<span class="number">2.7</span><span class="number">.10</span></span><br><span class="line"></span><br><span class="line">This could take a <span class="keyword">while</span>. You can run the <span class="keyword">following</span> command <span class="keyword">on</span> another shell <span class="keyword">to</span> track the <span class="keyword">status</span>:</span><br><span class="line">  tail -<span class="keyword">f</span> <span class="string">"/usr/local/pythonbrew/log/build.log"</span></span><br><span class="line"></span><br><span class="line">Installing Python-<span class="number">2.7</span><span class="number">.10</span> <span class="keyword">into</span> /usr/<span class="keyword">local</span>/pythonbrew/pythons/Python-<span class="number">2.7</span><span class="number">.10</span></span><br><span class="line">Downloading ez_setup.py <span class="keyword">as</span> /usr/<span class="keyword">local</span>/pythonbrew/dists/ez_setup.py</span><br><span class="line">######################################################################## <span class="number">100.0</span>%</span><br><span class="line">Installing <span class="keyword">distribute</span> <span class="keyword">into</span> /usr/<span class="keyword">local</span>/pythonbrew/pythons/Python-<span class="number">2.7</span><span class="number">.10</span></span><br><span class="line"><span class="keyword">ERROR</span>: <span class="keyword">Failed</span> <span class="keyword">to</span> <span class="keyword">install</span> setuptools. See /usr/<span class="keyword">local</span>/pythonbrew/<span class="keyword">log</span>/<span class="keyword">build</span>.<span class="keyword">log</span> <span class="keyword">to</span> see why.</span><br><span class="line"><span class="keyword">Skip</span> installation <span class="keyword">of</span> setuptools.</span><br><span class="line"></span><br><span class="line">Installed Python-<span class="number">2.7</span><span class="number">.10</span> successfully. Run the <span class="keyword">following</span> command <span class="keyword">to</span> <span class="keyword">switch</span> <span class="keyword">to</span> Python-<span class="number">2.7</span><span class="number">.10</span>.</span><br><span class="line">  pythonbrew <span class="keyword">switch</span> <span class="number">2.7</span><span class="number">.10</span></span><br><span class="line">[root ~]#</span><br><span class="line"></span><br><span class="line">### 尝试用普通用户安装python，但是总提示命令不存在，或者python版本有误，不知为啥。</span></span><br></pre></td></tr></table></figure>
+<p><em>创建虚拟环境</em></p>
+<ol>
+<li>创建虚拟环境</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@iZ28gczd2csZ ~]# pythonbrew venv <span class="operator"><span class="keyword">create</span> py2_django -<span class="keyword">p</span> <span class="number">2.7</span><span class="number">.10</span></span><br><span class="line">Creating <span class="string">`py2_django`</span> environment <span class="keyword">into</span> /usr/<span class="keyword">local</span>/pythonbrew/venvs/Python-<span class="number">2.7</span><span class="number">.10</span></span><br><span class="line">Traceback (most recent <span class="keyword">call</span> <span class="keyword">last</span>):</span><br><span class="line"><span class="keyword">File</span> <span class="string">"/usr/local/pythonbrew/etc/virtualenv/virtualenv.py"</span>, line <span class="number">17</span>, <span class="keyword">in</span> &lt;<span class="keyword">module</span>&gt;</span><br><span class="line"><span class="keyword">import</span> zlib</span><br><span class="line">ImportError: <span class="keyword">No</span> <span class="keyword">module</span> named zlib</span><br><span class="line"># 安装 python2<span class="number">.7</span><span class="number">.10</span> 时报错</span><br><span class="line"><span class="keyword">ERROR</span>: <span class="keyword">Failed</span> <span class="keyword">to</span> <span class="keyword">install</span> setuptools</span><br><span class="line"># 执行 pythonbrew venv <span class="keyword">create</span> 时报错</span><br><span class="line">ImportError: <span class="keyword">No</span> <span class="keyword">module</span> named <span class="string">'pip._vendor.distlib.scripts'</span></span><br><span class="line">### 上面的报错都是因为缺失依赖导致的，需要安装缺失的库，然后重新安装python</span><br><span class="line">[root@iZ28gczd2csZ ~]#</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>安装缺失库，重新安装python</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## 重新安装python</span></span><br><span class="line">[root@iZ28gczd2csZ ~]<span class="preprocessor"># yum install -y zlib-devel openssl openssl-devel</span></span><br><span class="line">[root@iZ28gczd2csZ ~]<span class="preprocessor"># pythonbrew uninstall <span class="number">2.7</span><span class="number">.10</span></span></span><br><span class="line">[root@iZ28gczd2csZ ~]<span class="preprocessor"># pythonbrew install -v /usr/local/pythonbrew/dists/Python-<span class="number">2.7</span><span class="number">.10</span>.tgz</span></span><br><span class="line">或者</span><br><span class="line">[root@iZ28gczd2csZ ~]<span class="preprocessor"># pythonbrew install <span class="number">2.7</span><span class="number">.10</span></span></span><br><span class="line">Use the previously fetched /usr/local/pythonbrew/dists/Python-<span class="number">2.7</span><span class="number">.10</span>.tgz</span><br><span class="line">Extracting Python-<span class="number">2.7</span><span class="number">.10</span>.tgz into /usr/local/pythonbrew/build/Python-<span class="number">2.7</span><span class="number">.10</span></span><br><span class="line"></span><br><span class="line">This could take a <span class="keyword">while</span>. You can run the following command on another shell to track the status:</span><br><span class="line">  tail -f <span class="string">"/usr/local/pythonbrew/log/build.log"</span></span><br><span class="line"></span><br><span class="line">Installing Python-<span class="number">2.7</span><span class="number">.10</span> into /usr/local/pythonbrew/pythons/Python-<span class="number">2.7</span><span class="number">.10</span></span><br><span class="line">Downloading ez_setup.py as /usr/local/pythonbrew/dists/ez_setup.py</span><br><span class="line"><span class="preprocessor">######################################################################## <span class="number">100.0</span>%</span></span><br><span class="line">Installing distribute into /usr/local/pythonbrew/pythons/Python-<span class="number">2.7</span><span class="number">.10</span></span><br><span class="line">Installing pip into /usr/local/pythonbrew/pythons/Python-<span class="number">2.7</span><span class="number">.10</span></span><br><span class="line"></span><br><span class="line">Installed Python-<span class="number">2.7</span><span class="number">.10</span> successfully. Run the following command to <span class="keyword">switch</span> to Python-<span class="number">2.7</span><span class="number">.10</span>.</span><br><span class="line">  pythonbrew <span class="keyword">switch</span> <span class="number">2.7</span><span class="number">.10</span></span><br><span class="line">[root@iZ28gczd2csZ ~]<span class="preprocessor">#</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>初始化环境</li>
+</ol>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="property">@iZ28gczd2csZ</span> ~]<span class="comment"># pythonbrew venv init</span></span><br><span class="line">Remove virtualenv. (/usr/local/pythonbrew/etc/virtualenv)</span><br><span class="line">Remove virtualenv-clone. (/usr/local/pythonbrew/etc/virtualenv-clone)</span><br><span class="line">Downloading virtualenv.tar.gz as /usr/local/pythonbrew/dists/virtualenv.tar.gz</span><br><span class="line"><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span> <span class="number">100.0</span>%</span><br><span class="line">Extracting virtualenv into /usr/local/pythonbrew/etc/virtualenv</span><br><span class="line">Downloading virtualenv-clone.tar.gz as /usr/local/pythonbrew/dists/virtualenv-clone.tar.gz</span><br><span class="line"><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span> <span class="number">100.0</span>%</span><br><span class="line">Extracting virtualenv-clone into /usr/local/pythonbrew/etc/virtualenv-clone</span><br><span class="line">[root<span class="property">@iZ28gczd2csZ</span> ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>成功创建虚拟环境</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@iZ28gczd2csZ ~]# pythonbrew venv <span class="operator"><span class="keyword">create</span> py2_django -<span class="keyword">p</span> <span class="number">2.7</span><span class="number">.10</span></span><br><span class="line">Creating <span class="string">`py2_django`</span> environment <span class="keyword">into</span> /usr/<span class="keyword">local</span>/pythonbrew/venvs/Python-<span class="number">2.7</span><span class="number">.10</span></span><br><span class="line">Already <span class="keyword">using</span> interpreter /usr/<span class="keyword">local</span>/pythonbrew/pythons/Python-<span class="number">2.7</span><span class="number">.10</span>/<span class="keyword">bin</span>/python</span><br><span class="line"><span class="keyword">New</span> python executable <span class="keyword">in</span> /usr/<span class="keyword">local</span>/pythonbrew/venvs/Python-<span class="number">2.7</span><span class="number">.10</span>/py2_django/<span class="keyword">bin</span>/python</span><br><span class="line">Installing setuptools, pip, wheel...done.</span><br><span class="line">[root@iZ28gczd2csZ ~]#</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>在隔离环境下安装Django1.9</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">[root@iZ28gczd2csZ ~]# pybrew venv <span class="operator"><span class="keyword">use</span> py2_django</span><br><span class="line"># <span class="keyword">Using</span> <span class="string">`py2_django`</span> environment (<span class="keyword">found</span> <span class="keyword">in</span> /usr/<span class="keyword">local</span>/pythonbrew/venvs/Python-<span class="number">2.7</span><span class="number">.10</span>)</span><br><span class="line"># <span class="keyword">To</span> leave an environment, simply run <span class="string">`deactivate`</span></span><br><span class="line">(py2_django)[root@iZ28gczd2csZ ~]# pip <span class="keyword">install</span> django==<span class="number">1.9</span></span><br><span class="line">You <span class="keyword">are</span> <span class="keyword">using</span> pip <span class="keyword">version</span> <span class="number">7.0</span><span class="number">.3</span>, however <span class="keyword">version</span> <span class="number">7.1</span><span class="number">.2</span> <span class="keyword">is</span> available.</span><br><span class="line">You should <span class="keyword">consider</span> upgrading via the <span class="string">'pip install --upgrade pip'</span> command.</span><br><span class="line">Collecting django==<span class="number">1.9</span></span><br><span class="line">  Downloading Django-<span class="number">1.9</span>-py2.py3-<span class="keyword">none</span>-<span class="keyword">any</span>.whl (<span class="number">6.6</span>MB)</span><br><span class="line">    <span class="number">100</span>% |████████████████████████████████| <span class="number">6.6</span>MB <span class="number">55</span>kB/s </span><br><span class="line">Installing collected packages: django</span><br><span class="line">Successfully installed django-<span class="number">1.9</span></span><br><span class="line">(py2_django)[root@iZ28gczd2csZ ~]# pip <span class="keyword">install</span> <span class="comment">--upgrade pip</span></span><br><span class="line">You <span class="keyword">are</span> <span class="keyword">using</span> pip <span class="keyword">version</span> <span class="number">7.0</span><span class="number">.3</span>, however <span class="keyword">version</span> <span class="number">7.1</span><span class="number">.2</span> <span class="keyword">is</span> available.</span><br><span class="line">You should <span class="keyword">consider</span> upgrading via the <span class="string">'pip install --upgrade pip'</span> command.</span><br><span class="line">Collecting pip</span><br><span class="line">  <span class="keyword">Using</span> cached pip-<span class="number">7.1</span><span class="number">.2</span>-py2.py3-<span class="keyword">none</span>-<span class="keyword">any</span>.whl</span><br><span class="line">Installing collected packages: pip</span><br><span class="line">  <span class="keyword">Found</span> existing installation: pip <span class="number">7.0</span><span class="number">.3</span></span><br><span class="line">    Uninstalling pip-<span class="number">7.0</span><span class="number">.3</span>:</span><br><span class="line">      Successfully uninstalled pip-<span class="number">7.0</span><span class="number">.3</span></span><br><span class="line">Successfully installed pip-<span class="number">7.1</span><span class="number">.2</span></span><br><span class="line">(py2_django)[root@iZ28gczd2csZ ~]# python</span><br><span class="line">Python <span class="number">2.7</span><span class="number">.10</span> (<span class="keyword">default</span>, <span class="built_in">Dec</span> <span class="number">28</span> <span class="number">2015</span>, <span class="number">17</span>:<span class="number">11</span>:<span class="number">58</span>) </span><br><span class="line">[GCC <span class="number">4.4</span><span class="number">.7</span> <span class="number">20120313</span> (Red Hat <span class="number">4.4</span><span class="number">.7</span>-<span class="number">16</span>)] <span class="keyword">on</span> linux2</span><br><span class="line"><span class="keyword">Type</span> <span class="string">"help"</span>, <span class="string">"copyright"</span>, <span class="string">"credits"</span> <span class="keyword">or</span> <span class="string">"license"</span> <span class="keyword">for</span> more information.</span><br><span class="line">&gt;&gt;&gt; <span class="keyword">import</span> django</span><br><span class="line">&gt;&gt;&gt; django.<span class="keyword">VERSION</span></span><br><span class="line">(<span class="number">1</span>, <span class="number">9</span>, <span class="number">0</span>, <span class="string">'final'</span>, <span class="number">0</span>)</span><br><span class="line">&gt;&gt;&gt; <span class="keyword">exit</span>()</span><br><span class="line">(py2_django)[root@iZ28gczd2csZ ~]#</span><br><span class="line">(py2_django)[root@iZ28gczd2csZ ~]# pythonbrew <span class="keyword">off</span></span><br><span class="line">[root@iZ28gczd2csZ ~]#</span></span><br></pre></td></tr></table></figure>
+<h2 id="u5229_u7528virtualenv_u642D_u5EFA_u591A_u4E2A_u4E92_u4E0D_u5E72_u6270_u7684_u5F00_u53D1_u73AF_u5883"><a href="#u5229_u7528virtualenv_u642D_u5EFA_u591A_u4E2A_u4E92_u4E0D_u5E72_u6270_u7684_u5F00_u53D1_u73AF_u5883" class="headerlink" title="利用virtualenv搭建多个互不干扰的开发环境"></a>利用virtualenv搭建多个互不干扰的开发环境</h2><hr>
+<p><em>利用virtualenv可以实现多个依赖不同版本Django的项目共存</em></p>
+<ol>
+<li><p>安装virtualenv</p>
+ <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="keyword">install</span> virtualenv virtualenvwrapper</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>配置系统环境变量</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改 ~/.bash_profile 文件，添加一下内容</span></span><br><span class="line"><span class="built_in">export</span> WORKON_HOME=<span class="variable">$HOME</span>/.virtualenvs</span><br><span class="line"><span class="built_in">export</span> PROJECT_HOME=<span class="variable">$HOME</span>/workspace</span><br><span class="line"><span class="built_in">source</span> /usr/<span class="built_in">local</span>/bin/virtualenvwrapper.sh</span><br><span class="line"><span class="comment"># source 以使修改生效</span></span><br><span class="line"><span class="built_in">source</span> ~/.bash_profile</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>使用方法</p>
+<p> 3.1 创建运行环境 zqxt</p>
+ <pre>
+ mkvirtualenv <i>zqxt</i>
+ </pre>
+
+<p> 3.2 工作在 zqxt 环境</p>
+ <pre>
+ workon <i>zqxt</i>
+ </pre>
+
+<p> 3.3 其他用法</p>
+ <pre>
+ # 删除运行环境 zqxt
+ rmvirtualenv <i>zqxt</i>
+ # 创建mic项目和运行环境mic
+ mkproject <i>mic</i>
+ # 创建临时运行环境
+ mktmpenv 
+ # 列出可用运行环境
+ lsvirtualenv
+ # 列出当前环境安装了的包
+ lssitepackages
+ </pre>
+
+</li>
+</ol>
+<blockquote>
+<p><a href="http://www.ziqiangxuetang.com/django/django-install.html" target="_blank" rel="external">Django 环境搭建</a><br><br><a href="http://pythonbrew.readthedocs.org/en/latest/#id3" target="_blank" rel="external">欢迎阅读pythonbrew文档</a><br><br><a href="http://www.openfoundry.org/tw/tech-column/8516-pythons-virtual-environment-and-multi-version-programming-tools-virtualenv-and-pythonbrew" target="_blank" rel="external">Python 的虛擬環境及多版本開發利器─Virtualenv 與 Pythonbrew</a></p>
+</blockquote>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Django/" rel="tag">#Django</a>
+          
+            <a href="/tags/Python/" rel="tag">#Python</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/25/resize-扩展逻辑分区/" rel="next" title="resize 扩展逻辑分区">
+                <i class="fa fa-chevron-left"></i> resize 扩展逻辑分区
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/12/28/安装piwik/" rel="prev" title="安装piwik">
+                安装piwik <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/12/25/CentOS6下安装Django记录/"
+           data-title="CentOS6下安装Django记录" data-url="http://www.ai-fire.com/2015/12/25/CentOS6下安装Django记录/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="Eraz.Xie" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Eraz.Xie</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://gitcafe.com/surveying" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> gitcafe
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://theme-next.iissnan.com" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> theme-next
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.mirrorservice.org" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> UK-Mirrors
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">Links</p>
+            
+              <span class="links-of-author-item">
+                <a href="http://macshuo.com/" target="_blank">MacTalk</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#u5229_u7528pip_u5B89_u88C5Django"><span class="nav-number">1.</span> <span class="nav-text">利用pip安装Django</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u6E90_u7801_u5B89_u88C5Django"><span class="nav-number">2.</span> <span class="nav-text">源码安装Django</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pythonbrew__u9694_u79BB_u73AF_u5883_u5B89_u88C5Django"><span class="nav-number">3.</span> <span class="nav-text">pythonbrew 隔离环境安装Django</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pip_u5B89_u88C5pythonbrew"><span class="nav-number">3.1.</span> <span class="nav-text">pip安装pythonbrew</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u57FA_u672C_u7528_u6CD5"><span class="nav-number">4.</span> <span class="nav-text">基本用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u5229_u7528pythonbrew_u914D_u7F6E_u9694_u79BB_u7684_u5F00_u53D1_u73AF_u5883"><span class="nav-number">5.</span> <span class="nav-text">利用pythonbrew配置隔离的开发环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pythonbrew_u521B_u5EFA_u9694_u79BB_u73AF_u5883_uFF0C_u5B89_u88C5Django"><span class="nav-number">5.1.</span> <span class="nav-text">pythonbrew创建隔离环境，安装Django</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u5229_u7528virtualenv_u642D_u5EFA_u591A_u4E2A_u4E92_u4E0D_u5E72_u6270_u7684_u5F00_u53D1_u73AF_u5883"><span class="nav-number">6.</span> <span class="nav-text">利用virtualenv搭建多个互不干扰的开发环境</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" style="text-align:center;">
+  
+  <a href="http://www.miitbeian.gov.cn">粤ICP备15020665号-1</a>&nbsp;&copy;&nbsp; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Eraz.Xie</span>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ai-fire"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>
